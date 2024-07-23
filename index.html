@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+</head>
+<body>
+    <div id="userFormContainer">
+        <form id="userForm">
+            <input type="text" id="name" placeholder="Name" />
+            <input type="email" id="email" placeholder="Email" />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const handleSubmit = async (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            try {
+                const response = await fetch('http://localhost:8080/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to submit form');
+                }
+
+                const data = await response.json();
+                console.log('Response:', data); // Log response from backend
+            } catch (error) {
+                console.error('Error:', error.message);
+            }
+        };
+
+        // Add event listener to form submission
+        document.getElementById('userForm').addEventListener('submit', handleSubmit);
+    </script>
+</body>
+</html>
+

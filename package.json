@@ -1,0 +1,11 @@
+{
+  "name": "simple-html-form",
+  "version": "1.0.0",
+  "description": "A simple HTML form with JavaScript handling",
+  "scripts": {
+    "start": "echo 'Starting application...'"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
+
